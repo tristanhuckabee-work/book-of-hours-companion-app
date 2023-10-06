@@ -10,13 +10,13 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import './index.css';
 
 
+const store = configureStore();
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
 
   window.csrfFetch = csrfFetch;
   window.store = store;
 }
-const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
