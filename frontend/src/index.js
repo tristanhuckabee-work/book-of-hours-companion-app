@@ -5,10 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 
 import configureStore from './store';
 import App from './App';
+import { restoreCSRF, csrfFetch } from './store/csrf';
 
 import './index.css';
 
 
+if (process.env.NODE_ENV !== 'production') {
+  restoreCSRF();
+
+  window.csrfFetch = csrfFetch;
+  window.store = store;
+}
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
